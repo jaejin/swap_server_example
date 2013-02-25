@@ -6,18 +6,13 @@
 %%% Created :  1 Feb 2013 by 재진 윤 <jaejinyun@jaejinyunmac.local>
 %%%-------------------------------------------------------------------
 -module(hello_server2).
--export([loop/0]).
-
-loop()->
-    receive
-        {From, {hello,N}}->
-            From ! {self(), hello(N)},
-            loop();
-        {become,Something} ->
-            Something()
-    end.
+-export([init/0,handle/2]).
 
 
-hello(N)->
-    io:format("hello2 ~p~n",[N]).
+init()->
+    true.
+
+handle(Request,OldState)->
+    io:format("Request: hello2 ~p~n",[Request]),
+    {"Response Hello Server2",OldState}.
            
